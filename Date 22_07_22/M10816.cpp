@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
-#include <map>
 #include <algorithm>
 
 using namespace std;
@@ -11,26 +10,29 @@ using namespace std;
 int main()
 {
 	int i,n,m;
-	scanf("%d", &n);
-	map<int, int> mm;
 
+	scanf("%d", &n);
+	vector<int> v1(n);
 	for (i = 0; i < n; i++) {
-		int tmp;
-		scanf("%d", &tmp);
-		mm[tmp]++;
+		scanf("%d", &v1[i]);
 	}
 
 	scanf("%d", &m);
-	vector<int> v(m);
+	vector<int> v2(m);
 	for (i = 0; i < m; i++) {
-		scanf("%d", &v[i]);
+		scanf("%d", &v2[i]);
 	}
+
+	sort(v1.begin(), v1.end());
 
 	for (i = 0; i < m; i++)
 	{
-		printf("%d ", mm[v[i]]);
-	}
+		auto low = lower_bound(v1.begin(), v1.end(), v2[i]);
+		auto up = upper_bound(v1.begin(), v1.end(), v2[i]);
+		int cnt = up - low;
 
+		printf("%d ", cnt);
+	}
 
 
 	return 0;
