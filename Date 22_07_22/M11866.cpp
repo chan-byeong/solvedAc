@@ -13,9 +13,15 @@ int main()
 	int n, k;
 	scanf("%d %d", &n, &k);
 	
-	int cnt = 0;
+	int cnt = 1;
 	while (true)
 	{
+		if (cnt == k && arr[point] != -1) {
+			arr[point] = -1;
+			ans.push_back(point);
+			cnt = 1;
+		}
+
 		if (arr[point] != -1) {
 			if (point == n) {
 				point = 1;
@@ -34,12 +40,6 @@ int main()
 				point++;
 			}
 			
-		}
-
-		if (cnt == k - 1 && arr[point] != -1) {
-			arr[point] = -1;
-			ans.push_back(point);
-			cnt = 0;
 		}
 
 		if (ans.size() == n) {
